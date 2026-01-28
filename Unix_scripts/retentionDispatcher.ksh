@@ -948,9 +948,9 @@ do
 			file_path="$incoming_dir/$sub_dir"
 			if [ -f $file_path/$file_name ]; then
 				file_ext=`echo $file_name | awk -F"." '{print $7 $8 $9}'`
-				file_prefix=`echo $file_name| awk -F"." '{print $1 $2 $3 $4 $5 $6}'`
-				Appname=`echo $file_name| awk -F"." '{print $4}'`
-				Sor=`echo $file_name| awk -F"." '{print $3}'`
+				file_prefix=`echo $file_name | awk -F'.' '{NF--; print $0}' OFS=.`
+				Appname=`echo $file_name | awk -F"." '{print $4}'`
+				Sor=`echo $file_name | awk -F"." '{print $3}'`
 				print_log "[INFO] - for the file \"$file_name\" at \"$file_path\" proceeding for length validation"
 				fun_for_length
 			else
